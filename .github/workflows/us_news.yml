@@ -3,11 +3,6 @@ name: Update US Official News
 on:
   schedule:
     - cron: '17 * * * *'
-  push:
-    branches: [main]
-    paths:
-      - 'us/build.py'
-      - '.github/workflows/us_news.yml'
   workflow_dispatch:
 
 permissions:
@@ -16,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: us-news-update
+  group: pages
   cancel-in-progress: false
 
 jobs:

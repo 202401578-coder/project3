@@ -10,10 +10,20 @@ on:
 
 permissions:
   contents: write # 리포트 파일 및 README.md를 레포지토리에 자동 커밋하기 위한 권한
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   run-stock-briefing:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: 저장소 체크아웃
@@ -42,3 +52,21 @@ jobs:
           git config --local user.name "GitHub Action Bot"
           git add reports/ README.md index.html
           git diff --quiet && git diff --staged --quiet || (git commit -m "chore(report): 주식 브리핑 및 웹 대시보드 자동 업데이트 [skip ci]" && git push)
+
+      - name: 통합 사이트 배포 준비
+        run: |
+          mkdir -p _site/us
+          cp index.html _site/index.html
+          cp us/index.html us/data.json _site/us/
+
+      - name: GitHub Pages 설정
+        uses: actions/configure-pages@v5
+
+      - name: Pages artifact 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: GitHub Pages 배포
+        id: deployment
+        uses: actions/deploy-pages@v4
