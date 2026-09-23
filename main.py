@@ -403,6 +403,53 @@ def generate_html_dashboard(kr_stocks: list, us_stocks: list, date_str: str):
         f.write(html_template)
     print("index.html 대시보드 웹페이지 생성 완료.")
 
+def send_discord_alert(kr_stocks: list, us_stocks: list, date_str: str):
+    """
+    [디스코드 실시간 알림 껍데기/스켈레톤]
+    - DISCORD_WEBHOOK_URL 환경변수가 없으면 아무 에러 없이 안내 로그만 남깁니다.
+    - 향후 디스코드 채널 웹훅 URL을 등록하면 즉시 Rich Embed 카드로 알림이 발송됩니다.
+    """
+    webhook_url = os.getenv("DISCORD_WEBHOOK_URL", "").strip()
+    if not webhook_url:
+        print("\n[디스코드 알림 껍데기]")
+        print("ℹ️ DISCORD_WEBHOOK_URL 환경변수가 설정되지 않아 알림 발송을 건너뜁니다.")
+        print("   (향후 디스코드 개설 시 GitHub Secrets에 'DISCORD_WEBHOOK_URL'을 등록하시면 즉시 실시간 알림이 활성화됩니다.)")
+        return
+
+    try:
+        # 디스코드 Rich Embed 메시지 포맷 구성
+        kr_field_text = "\n".join([
+            f"• **{s['quote']['name']}**: {s['quote']['close_price']}원 ({s['quote']['sign']} {s['quote']['diff_ratio']}%) - [실제시세]({s['quote']['verify_url']})"
+            for s in kr_stocks
+        ])
+        
+        us_field_text = "\n".join([
+            f"• **{s['quote']['name']}**: ${s['quote']['close_price']} ({s['quote']['sign']} {s['quote']['diff_ratio']}%) - [실제시세]({s['quote']['verify_url']})"
+            for s in us_stocks
+        ])
+
+        payload = {
+            "username": "주식 브리핑 봇",
+            "avatar_url": "https://cdn-icons-png.flaticon.com/512/2422/2422796.png",
+            "embeds": [
+                {
+                    "title": "📊 글로벌 주식 브리핑 (국장 & 미장)",
+                    "description": f"기준 일시: `{date_str}`\n[웹 대시보드 바로가기](https://hanjisubusiness22222.github.io/project3/)",
+                    "color": 0x4F46E5,  # 인디고 색상
+                    "fields": [
+                        {"name": "🇰🇷 국내 반도체", "value": kr_field_text or "데이터 없음", "inline": False},
+                        {"name": "🇺🇸 미국 빅테크", "value": us_field_text or "데이터 없음", "inline": False},
+                    ],
+                    "footer": {"text": "GitHub Actions 자동 알림 파이프라인"}
+                }
+            ]
+        }
+
+        resp = requests.post(webhook_url, json=payload, timeout=10)
+        print(f"[디스코드 알림 전송] 응답 코드: {resp.status_code}")
+    except Exception as e:
+        print(f"[디스코드 알림 전송 실패] {e}")
+
 def main():
     print("=== [글로벌 주식/뉴스 수집 시작] ===")
     
@@ -441,6 +488,9 @@ def main():
 
     # 5. index.html 웹 대시보드 자동 갱신
     generate_html_dashboard(kr_stocks_data, us_stocks_data, date_str)
+
+    # 6. 디스코드 실시간 알림 전송 (껍데기/스켈레톤 - URL 미등록 시 자동 패스)
+    send_discord_alert(kr_stocks_data, us_stocks_data, date_str)
 
     print("\n=== 모든 작업 완료 ===")
 
