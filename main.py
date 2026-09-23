@@ -13,17 +13,31 @@ if sys.stdout.encoding != "utf-8":
     except Exception:
         pass
 
-TARGET_STOCKS = [
+# ==============================================================================
+# 🎯 종목 설정 (팀원 협업 포인트)
+# ==============================================================================
+# [국내장] 삼성전자, SK하이닉스
+TARGET_KR_STOCKS = [
     {"name": "삼성전자", "code": "005930"},
     {"name": "SK하이닉스", "code": "000660"},
+]
+
+# [미국장 확장 영역] 다른 멤버가 여기에 미국 종목을 추가하면 자동으로 수집·표시됩니다.
+TARGET_US_STOCKS = [
+    {"name": "엔비디아", "ticker": "NVDA"},
+    {"name": "애플", "ticker": "AAPL"},
+    {"name": "마이크로소프트", "ticker": "MSFT"},
 ]
 
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
 
-def get_stock_quote(code: str) -> dict:
-    """네이버 모바일 증권 API를 통해 주가 시세 정보 조회"""
+# ==============================================================================
+# 1. 시세 및 뉴스 수집 로직
+# ==============================================================================
+def get_kr_stock_quote(code: str) -> dict:
+    """[국장] 네이버 모바일 증권 API를 통한 시세 수집"""
     try:
         url = f"https://m.stock.naver.com/api/stock/{code}/integration"
         resp = requests.get(url, headers=HEADERS, timeout=10)
@@ -45,8 +59,10 @@ def get_stock_quote(code: str) -> dict:
         sign = "▲" if compare_type == "RISING" else ("▼" if compare_type == "FALLING" else "-")
 
         return {
+            "market": "KR",
             "name": basic_data.get("stockName", data.get("stockName", code)),
-            "code": code,
+            "symbol": code,
+            "currency": "원",
             "close_price": close_price,
             "diff_price": diff_price,
             "diff_ratio": diff_ratio,
@@ -56,30 +72,59 @@ def get_stock_quote(code: str) -> dict:
             "high_price": total_infos.get("highPrice", "-"),
             "low_price": total_infos.get("lowPrice", "-"),
             "volume": total_infos.get("accumulatedTradingVolume", "-"),
-            "market_cap": total_infos.get("marketValue", "-"),
         }
     except Exception as e:
-        print(f"[{code}] 주가 정보 조회 실패: {e}")
-        return {
-            "name": code,
-            "code": code,
-            "close_price": "-",
-            "diff_price": "-",
-            "diff_ratio": "-",
-            "sign": "-",
-            "direction": "flat",
-            "open_price": "-",
-            "high_price": "-",
-            "low_price": "-",
-            "volume": "-",
-            "market_cap": "-",
-        }
+        print(f"[{code}] 국장 주가 정보 조회 실패: {e}")
+        return None
 
-def get_stock_news(query: str, max_count: int = 5) -> list:
-    """Google News RSS (한국어)를 통해 특정 종목 최신 뉴스 수집"""
+def get_us_stock_quote(ticker: str, name: str) -> dict:
+    """[미장] Yahoo Finance Chart API를 통한 미국 주식 시세 수집 (별도 라이브러리 설치 불필요)"""
     try:
-        encoded_query = requests.utils.quote(f"{query} 주식 OR 반도체 OR 실적")
-        rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=ko&gl=KR&ceid=KR:ko"
+        url = f"https://query1.finance.yahoo.com/v8/finance/chart/{ticker}"
+        resp = requests.get(url, headers=HEADERS, timeout=10)
+        resp.raise_for_status()
+        data = resp.json()
+        
+        result = data.get("chart", {}).get("result", [])[0]
+        meta = result.get("meta", {})
+
+        current_price = meta.get("regularMarketPrice", 0.0)
+        prev_close = meta.get("previousClose", current_price)
+        diff = current_price - prev_close
+        diff_ratio = (diff / prev_close * 100) if prev_close else 0.0
+
+        is_up = diff > 0
+        is_down = diff < 0
+        sign = "▲" if is_up else ("▼" if is_down else "-")
+
+        return {
+            "market": "US",
+            "name": name,
+            "symbol": ticker,
+            "currency": "$",
+            "close_price": f"{current_price:,.2f}",
+            "diff_price": f"{abs(diff):,.2f}",
+            "diff_ratio": f"{diff_ratio:+.2f}",
+            "sign": sign,
+            "direction": "up" if is_up else ("down" if is_down else "flat"),
+            "open_price": f"{meta.get('regularMarketOpen', 0):,.2f}",
+            "high_price": f"{meta.get('regularMarketDayHigh', 0):,.2f}",
+            "low_price": f"{meta.get('regularMarketDayLow', 0):,.2f}",
+            "volume": f"{meta.get('regularMarketVolume', 0):,}",
+        }
+    except Exception as e:
+        print(f"[{ticker}] 미장 주가 조회 실패: {e}")
+        return None
+
+def get_stock_news(query: str, lang: str = "ko", max_count: int = 4) -> list:
+    """Google News RSS 피드를 활용한 뉴스 수집"""
+    try:
+        encoded_query = requests.utils.quote(query)
+        if lang == "ko":
+            rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=ko&gl=KR&ceid=KR:ko"
+        else:
+            rss_url = f"https://news.google.com/rss/search?q={encoded_query}&hl=en-US&gl=US&ceid=US:en"
+
         resp = requests.get(rss_url, headers=HEADERS, timeout=10)
         resp.raise_for_status()
 
@@ -105,35 +150,43 @@ def get_stock_news(query: str, max_count: int = 5) -> list:
         print(f"[{query}] 뉴스 수집 실패: {e}")
         return []
 
-def build_markdown_report(stocks_data: list, date_str: str) -> str:
+# ==============================================================================
+# 2. 리포트 생성 및 저장 로직
+# ==============================================================================
+def build_markdown_report(kr_stocks: list, us_stocks: list, date_str: str) -> str:
     """마크다운 포맷 브리핑 리포트 생성"""
     md = []
-    md.append(f"## 📊 [브리핑] 국장 반도체(삼성전자·SK하이닉스) 시세 및 뉴스")
-    md.append(f"> 기준 일시: **{date_str}**  *(GitHub Actions 자동 생성)*\n")
+    md.append(f"## 📊 [글로벌 주식 브리핑] 국장 반도체 & 미장 빅테크")
+    md.append(f"> 기준 일시: **{date_str}**  *(GitHub Actions 자동 갱신)*\n")
 
-    # 1. 주가 요약 표
-    md.append("### 📈 주가 요약")
-    md.append("| 종목명 | 종목코드 | 현재가 (원) | 전일대비 | 등락률 | 시가 | 고가 | 저가 | 거래량(주) |")
+    # 1. 국장 요약
+    md.append("### 🇰🇷 국내 주식 (국장: 삼성전자 & SK하이닉스)")
+    md.append("| 종목명 | 코드 | 현재가 (원) | 전일대비 | 등락률 | 시가 | 고가 | 저가 | 거래량 |")
     md.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
-    for s in stocks_data:
-        quote = s["quote"]
-        sign_color = "🔴" if quote["sign"] == "▲" else ("🔵" if quote["sign"] == "▼" else "⚪")
-        diff_str = f"{sign_color} {quote['sign']} {quote['diff_price']}"
-        ratio_str = f"{quote['diff_ratio']}%"
-        md.append(f"| **{quote['name']}** | `{quote['code']}` | **{quote['close_price']}** | {diff_str} | {ratio_str} | {quote['open_price']} | {quote['high_price']} | {quote['low_price']} | {quote['volume']} |")
+    for s in kr_stocks:
+        q = s["quote"]
+        sign_color = "🔴" if q["sign"] == "▲" else ("🔵" if q["sign"] == "▼" else "⚪")
+        md.append(f"| **{q['name']}** | `{q['symbol']}` | **{q['close_price']}** | {sign_color} {q['sign']} {q['diff_price']} | {q['diff_ratio']}% | {q['open_price']} | {q['high_price']} | {q['low_price']} | {q['volume']} |")
     md.append("")
 
-    # 2. 종목별 최신 뉴스
-    md.append("### 📰 최신 주요 뉴스")
-    for s in stocks_data:
-        quote = s["quote"]
-        news_list = s["news"]
-        md.append(f"#### 🔹 {quote['name']} (`{quote['code']}`)")
-        if news_list:
-            for item in news_list:
-                md.append(f"- [{item['title']}]({item['link']}) `[{item['publisher']}]`")
-        else:
-            md.append("- 최신 뉴스를 가져오지 못했습니다.")
+    # 2. 미장 요약 (팀원 확장 영역)
+    if us_stocks:
+        md.append("### 🇺🇸 미국 주식 (미장 빅테크)")
+        md.append("| 종목명 | 티커 | 현재가 ($) | 전일대비 | 등락률 | 고가 | 저가 | 거래량 |")
+        md.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+        for s in us_stocks:
+            q = s["quote"]
+            sign_color = "🟢" if q["sign"] == "▲" else ("🔴" if q["sign"] == "▼" else "⚪")
+            md.append(f"| **{q['name']}** | `{q['symbol']}` | **${q['close_price']}** | {sign_color} {q['sign']} ${q['diff_price']} | {q['diff_ratio']}% | ${q['high_price']} | ${q['low_price']} | {q['volume']} |")
+        md.append("")
+
+    # 3. 최신 뉴스 요약
+    md.append("### 📰 핵심 뉴스 피드")
+    for s in kr_stocks:
+        q = s["quote"]
+        md.append(f"#### 🔹 {q['name']} (`{q['symbol']}`)")
+        for item in s["news"]:
+            md.append(f"- [{item['title']}]({item['link']}) `[{item['publisher']}]`")
         md.append("")
 
     return "\n".join(md)
@@ -159,70 +212,77 @@ def update_readme_dashboard(report_md: str):
             f.write(new_content)
         print("README.md 대시보드 업데이트 완료.")
 
-def generate_html_dashboard(stocks_data: list, date_str: str):
-    """GitHub Pages용 모던 웹 대시보드 index.html 자동 생성"""
-    
-    # HTML 카드 생성
-    stock_cards_html = ""
-    news_sections_html = ""
+def generate_html_dashboard(kr_stocks: list, us_stocks: list, date_str: str):
+    """GitHub Pages용 인터랙티브 웹 대시보드 index.html 생성"""
 
-    for s in stocks_data:
-        q = s["quote"]
-        news_list = s["news"]
+    def render_stock_card(q, is_kr=True):
         is_up = q["direction"] == "up"
         is_down = q["direction"] == "down"
         
-        badge_class = "bg-rose-500/10 text-rose-500 border-rose-500/20" if is_up else (
-            "bg-sky-500/10 text-sky-500 border-sky-500/20" if is_down else "bg-slate-500/10 text-slate-400 border-slate-500/20"
-        )
-        sign_symbol = "▲" if is_up else ("▼" if is_down else "-")
+        # 한국: 상승(빨강), 하락(파랑) / 미국: 상승(초록), 하락(빨강)
+        if is_kr:
+            badge_class = "bg-rose-500/10 text-rose-400 border-rose-500/20" if is_up else (
+                "bg-sky-500/10 text-sky-400 border-sky-500/20" if is_down else "bg-slate-500/10 text-slate-400 border-slate-500/20"
+            )
+        else:
+            badge_class = "bg-emerald-500/10 text-emerald-400 border-emerald-500/20" if is_up else (
+                "bg-rose-500/10 text-rose-400 border-rose-500/20" if is_down else "bg-slate-500/10 text-slate-400 border-slate-500/20"
+            )
 
-        stock_cards_html += f"""
-        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-600 transition-all">
+        sign_symbol = "▲" if is_up else ("▼" if is_down else "-")
+        currency_unit = "원" if is_kr else "$"
+        prefix = "" if is_kr else "$"
+
+        return f"""
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-500 transition-all">
           <div class="flex items-center justify-between mb-4">
             <div>
-              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">{q["code"]}</span>
-              <h3 class="text-2xl font-bold text-white inline">{q["name"]}</h3>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">{q["symbol"]}</span>
+              <h3 class="text-xl font-bold text-white inline">{q["name"]}</h3>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold px-3 py-1 rounded-full border {badge_class}">
-              {sign_symbol} {q["diff_price"]}원 ({q["diff_ratio"]}%)
+            <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border {badge_class}">
+              {sign_symbol} {prefix}{q["diff_price"]} ({q["diff_ratio"]}%)
             </span>
           </div>
           
-          <div class="mb-6">
+          <div class="mb-5">
             <div class="text-xs text-slate-400 font-medium">현재가</div>
-            <div class="text-4xl font-extrabold text-white tracking-tight">{q["close_price"]} <span class="text-xl font-normal text-slate-400">원</span></div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">{prefix}{q["close_price"]} <span class="text-lg font-normal text-slate-400">{currency_unit if is_kr else ''}</span></div>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-900/50 p-4 rounded-xl border border-slate-700/40">
-            <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">{q["open_price"]}</span></div>
-            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-rose-400">{q["high_price"]}</span></div>
-            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-sky-400">{q["low_price"]}</span></div>
-            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">{q["volume"]}주</span></div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
+            <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">{prefix}{q["open_price"]}</span></div>
+            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">{prefix}{q["high_price"]}</span></div>
+            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">{prefix}{q["low_price"]}</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">{q["volume"]}</span></div>
           </div>
         </div>
         """
 
-        # 뉴스 리스트 렌더링
-        news_items_html = ""
-        for n in news_list:
-            news_items_html += f"""
+    kr_cards = "\n".join([render_stock_card(s["quote"], is_kr=True) for s in kr_stocks])
+    us_cards = "\n".join([render_stock_card(s["quote"], is_kr=False) for s in us_stocks])
+
+    # 뉴스 렌더링
+    news_html = ""
+    for s in kr_stocks:
+        q = s["quote"]
+        items_html = "".join([
+            f"""
             <a href="{n['link']}" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
               <div class="flex items-start justify-between gap-3">
                 <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">{n['title']}</div>
                 <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">{n['publisher']}</span>
               </div>
             </a>
-            """
-
-        news_sections_html += f"""
-        <div class="mb-8">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
-            <h4 class="text-lg font-bold text-white">{q["name"]} 최신 뉴스</h4>
-          </div>
-          <div class="space-y-3">
-            {news_items_html}
+            """ for n in s["news"]
+        ])
+        news_html += f"""
+        <div class="mb-6">
+          <h4 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> {q["name"]} 뉴스
+          </h4>
+          <div class="space-y-2.5">
+            {items_html}
           </div>
         </div>
         """
@@ -232,41 +292,37 @@ def generate_html_dashboard(stocks_data: list, date_str: str):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>국장 반도체 브리핑 | 삼성전자 & SK하이닉스</title>
+  <title>글로벌 주식 브리핑 | 국장 & 미장 대시보드</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body {{ font-family: 'Pretendard', sans-serif; }}
-  </style>
+  <style> body {{ font-family: 'Pretendard', sans-serif; }} </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
-
-  <!-- Background Decorative Gradient -->
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl"></div>
     <div class="absolute top-1/3 -right-40 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl"></div>
   </div>
 
-  <div class="relative z-10 max-w-5xl mx-auto px-4 py-10 sm:py-16">
+  <div class="relative z-10 max-w-6xl mx-auto px-4 py-8 sm:py-14">
     <!-- Header -->
-    <header class="mb-10 text-center sm:text-left sm:flex sm:items-end sm:justify-between border-b border-slate-800/80 pb-8">
+    <header class="mb-10 text-center sm:text-left sm:flex sm:items-end sm:justify-between border-b border-slate-800/80 pb-6">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-2">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
           </span>
-          GitHub Actions 자동 갱신 중
+          GitHub Actions 자동 연동 중
         </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">국장 반도체 브리핑</h1>
-        <p class="text-slate-400 text-sm mt-1">삼성전자 & SK하이닉스 일일 시세 및 주요 뉴스 대시보드</p>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">글로벌 주식 모니터링</h1>
+        <p class="text-slate-400 text-sm mt-1">국내 반도체(삼성·하이닉스) & 미국 빅테크 실시간 시세 대시보드</p>
       </div>
 
-      <div class="mt-6 sm:mt-0 flex flex-wrap items-center gap-3 justify-center sm:justify-end">
+      <div class="mt-4 sm:mt-0 flex flex-wrap items-center gap-3 justify-center sm:justify-end">
         <div class="text-xs text-slate-400 font-mono bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
-          기준: {date_str}
+          갱신: {date_str}
         </div>
         <a href="https://github.com/hanjisubusiness22222/project3" target="_blank" class="text-xs font-semibold px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg shadow-indigo-600/20">
           GitHub 레포 ↗
@@ -274,53 +330,61 @@ def generate_html_dashboard(stocks_data: list, date_str: str):
       </div>
     </header>
 
-    <!-- Stock Cards Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-      {stock_cards_html}
+    <!-- SECTION 1: KR MARKET -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>🇰🇷</span> 국내 반도체 (삼성전자 · SK하이닉스)
+        </h2>
+        <span class="text-xs text-slate-500">KRX 기준</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        {kr_cards}
+      </div>
     </section>
 
-    <!-- Content Sections (News & Comparison) -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- News Column (2 cols) -->
-      <section class="lg:col-span-2">
-        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-          <span>📰</span> 실시간 주요 뉴스
-        </h3>
-        {news_sections_html}
-      </section>
+    <!-- SECTION 2: US MARKET -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>🇺🇸</span> 미국 빅테크 (엔비디아 · 애플 · MS)
+        </h2>
+        <span class="text-xs text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">팀원 협업 연동 영역</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {us_cards}
+      </div>
+    </section>
 
-      <!-- Side Column: US Market Comparison Highlight -->
-      <section class="lg:col-span-1">
+    <!-- SECTION 3: NEWS & REPORT -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2">
+        <h3 class="text-xl font-bold text-white mb-5 flex items-center gap-2">
+          <span>📰</span> 주요 뉴스 피드
+        </h3>
+        {news_html}
+      </div>
+
+      <!-- Side Report Info -->
+      <div class="lg:col-span-1">
         <div class="sticky top-6 bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-indigo-500/20 rounded-2xl p-6 shadow-xl">
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">💡 심층 분석 요약</span>
-          <h3 class="text-lg font-bold text-white mb-3">미국장이 더 좋은가?</h3>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">💡 협업 및 비교 보고서</span>
+          <h3 class="text-lg font-bold text-white mb-2">미국장이 왜 좋은가?</h3>
           <p class="text-xs text-slate-300 leading-relaxed mb-4">
-            엔지니어링(API 무료 생태계)과 펀더멘털(자사주 소각·주주환원, AI 칩 독점력, 달러 환율 방어) 측면에서 <strong>미국장이 확실히 우위</strong>에 있습니다.
+            미국 빅테크는 자사주 소각과 AI 생태계 장악으로 장기 우상향 체력을 가집니다. 다른 팀원은 <code>TARGET_US_STOCKS</code>에 티커를 추가하여 즉시 확장할 수 있습니다.
           </p>
-          <ul class="text-xs text-slate-400 space-y-2 mb-6">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">✓</span> <span><strong>자본 환원:</strong> 美 빅테크는 이익 증가 시 자사주 소각으로 주가 부양</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">✓</span> <span><strong>플랫폼 권력:</strong> 엔비디아(마진 70%) vs 메모리 공급사</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">✓</span> <span><strong>달러 자산:</strong> 경제 위기 시 환차익 헷지 기능</span>
-            </li>
-          </ul>
           <a href="https://github.com/hanjisubusiness22222/project3/blob/main/market_review_and_feasibility.md" target="_blank" class="block w-full text-center py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs border border-slate-700/80 transition-all">
-            전체 비교 보고서 읽기 📄
+            국장 vs 미장 검토 보고서 보기 📄
           </a>
         </div>
-      </section>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer class="mt-16 pt-8 border-t border-slate-900 text-center text-xs text-slate-500">
-      <p>Powered by GitHub Actions & Pages · 매일 장 마감 후 자동 갱신됩니다.</p>
+      <p>Powered by GitHub Actions · 팀 협업 주식 프로젝트</p>
     </footer>
   </div>
-
 </body>
 </html>
 """
@@ -328,37 +392,32 @@ def generate_html_dashboard(stocks_data: list, date_str: str):
         f.write(html_template)
     print("index.html 대시보드 웹페이지 생성 완료.")
 
-def send_discord_alert(report_md: str, webhook_url: str):
-    """(선택) 디스코드 웹훅으로 메시지 전송"""
-    if not webhook_url:
-        return
-    try:
-        payload = {"content": report_md[:1950]}
-        res = requests.post(webhook_url, json=payload, timeout=10)
-        print(f"디스코드 웹훅 전송 결과: {res.status_code}")
-    except Exception as e:
-        print(f"디스코드 웹훅 전송 실패: {e}")
-
 def main():
-    print("=== [삼성전자 & SK하이닉스 주식/뉴스 수집 시작] ===")
-    stocks_data = []
-    for stock in TARGET_STOCKS:
-        print(f"[{stock['name']}] 시세 및 뉴스 수집 중...")
-        quote = get_stock_quote(stock["code"])
-        news = get_stock_news(stock["name"], max_count=4)
-        stocks_data.append({
-            "quote": quote,
-            "news": news
-        })
+    print("=== [글로벌 주식/뉴스 수집 시작] ===")
+    
+    # 1. 국내 주식 수집
+    kr_stocks_data = []
+    for stock in TARGET_KR_STOCKS:
+        print(f"[국장: {stock['name']}] 시세 및 뉴스 수집 중...")
+        quote = get_kr_stock_quote(stock["code"])
+        news = get_stock_news(f"{stock['name']} 반도체 OR 주가", max_count=3)
+        if quote:
+            kr_stocks_data.append({"quote": quote, "news": news})
+
+    # 2. 미국 주식 수집 (팀원 확장 영역)
+    us_stocks_data = []
+    for stock in TARGET_US_STOCKS:
+        print(f"[미장: {stock['name']}] 시세 수집 중...")
+        quote = get_us_stock_quote(stock["ticker"], stock["name"])
+        if quote:
+            us_stocks_data.append({"quote": quote})
 
     now_utc = datetime.datetime.now(datetime.timezone.utc)
     now_kst = now_utc + datetime.timedelta(hours=9)
     date_str = now_kst.strftime("%Y-%m-%d %H:%M:%S KST")
 
-    # 1. 마크다운 리포트 생성
-    report_md = build_markdown_report(stocks_data, date_str)
-
-    # 2. reports 디렉토리 저장
+    # 3. 마크다운 리포트 생성 및 저장
+    report_md = build_markdown_report(kr_stocks_data, us_stocks_data, date_str)
     os.makedirs("reports", exist_ok=True)
     with open("reports/latest.md", "w", encoding="utf-8") as f:
         f.write(report_md)
@@ -366,16 +425,11 @@ def main():
     with open(today_filename, "w", encoding="utf-8") as f:
         f.write(report_md)
 
-    # 3. README.md 자동 업데이트
+    # 4. README.md 자동 갱신
     update_readme_dashboard(report_md)
 
-    # 4. GitHub Pages용 모던 웹 대시보드 index.html 생성
-    generate_html_dashboard(stocks_data, date_str)
-
-    # 5. 디스코드 웹훅 전송 (환경변수 세팅되어 있는 경우)
-    discord_webhook = os.getenv("DISCORD_WEBHOOK_URL")
-    if discord_webhook:
-        send_discord_alert(report_md, discord_webhook)
+    # 5. index.html 웹 대시보드 자동 갱신
+    generate_html_dashboard(kr_stocks_data, us_stocks_data, date_str)
 
     print("\n=== 모든 작업 완료 ===")
 

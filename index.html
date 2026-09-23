@@ -3,41 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>국장 반도체 브리핑 | 삼성전자 & SK하이닉스</title>
+  <title>글로벌 주식 브리핑 | 국장 & 미장 대시보드</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Pretendard', sans-serif; }
-  </style>
+  <style> body { font-family: 'Pretendard', sans-serif; } </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen antialiased selection:bg-indigo-500 selection:text-white">
-
-  <!-- Background Decorative Gradient -->
+<body class="bg-slate-950 text-slate-100 min-h-screen antialiased">
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
     <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-600/15 rounded-full blur-3xl"></div>
     <div class="absolute top-1/3 -right-40 w-96 h-96 bg-rose-600/10 rounded-full blur-3xl"></div>
   </div>
 
-  <div class="relative z-10 max-w-5xl mx-auto px-4 py-10 sm:py-16">
+  <div class="relative z-10 max-w-6xl mx-auto px-4 py-8 sm:py-14">
     <!-- Header -->
-    <header class="mb-10 text-center sm:text-left sm:flex sm:items-end sm:justify-between border-b border-slate-800/80 pb-8">
+    <header class="mb-10 text-center sm:text-left sm:flex sm:items-end sm:justify-between border-b border-slate-800/80 pb-6">
       <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-2">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
           </span>
-          GitHub Actions 자동 갱신 중
+          GitHub Actions 자동 연동 중
         </div>
-        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">국장 반도체 브리핑</h1>
-        <p class="text-slate-400 text-sm mt-1">삼성전자 & SK하이닉스 일일 시세 및 주요 뉴스 대시보드</p>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">글로벌 주식 모니터링</h1>
+        <p class="text-slate-400 text-sm mt-1">국내 반도체(삼성·하이닉스) & 미국 빅테크 실시간 시세 대시보드</p>
       </div>
 
-      <div class="mt-6 sm:mt-0 flex flex-wrap items-center gap-3 justify-center sm:justify-end">
+      <div class="mt-4 sm:mt-0 flex flex-wrap items-center gap-3 justify-center sm:justify-end">
         <div class="text-xs text-slate-400 font-mono bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
-          기준: 2026-09-23 16:46:51 KST
+          갱신: 2026-09-23 16:49:24 KST
         </div>
         <a href="https://github.com/hanjisubusiness22222/project3" target="_blank" class="text-xs font-semibold px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg shadow-indigo-600/20">
           GitHub 레포 ↗
@@ -45,78 +41,172 @@
       </div>
     </header>
 
-    <!-- Stock Cards Grid -->
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-      
-        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-600 transition-all">
+    <!-- SECTION 1: KR MARKET -->
+    <section class="mb-10">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>🇰🇷</span> 국내 반도체 (삼성전자 · SK하이닉스)
+        </h2>
+        <span class="text-xs text-slate-500">KRX 기준</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-500 transition-all">
           <div class="flex items-center justify-between mb-4">
             <div>
               <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">005930</span>
-              <h3 class="text-2xl font-bold text-white inline">삼성전자</h3>
+              <h3 class="text-xl font-bold text-white inline">삼성전자</h3>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-500 border-rose-500/20">
-              ▲ 9,000원 (3.25%)
+            <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-400 border-rose-500/20">
+              ▲ 8,500 (3.07%)
             </span>
           </div>
           
-          <div class="mb-6">
+          <div class="mb-5">
             <div class="text-xs text-slate-400 font-medium">현재가</div>
-            <div class="text-4xl font-extrabold text-white tracking-tight">285,500 <span class="text-xl font-normal text-slate-400">원</span></div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">285,000 <span class="text-lg font-normal text-slate-400">원</span></div>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-900/50 p-4 rounded-xl border border-slate-700/40">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
             <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">282,500</span></div>
-            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-rose-400">285,500</span></div>
-            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-sky-400">280,750</span></div>
-            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">28,031,474주</span></div>
+            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">285,500</span></div>
+            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">280,750</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">28,044,180</span></div>
           </div>
         </div>
         
-        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-600 transition-all">
+
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-500 transition-all">
           <div class="flex items-center justify-between mb-4">
             <div>
               <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">000660</span>
-              <h3 class="text-2xl font-bold text-white inline">SK하이닉스</h3>
+              <h3 class="text-xl font-bold text-white inline">SK하이닉스</h3>
             </div>
-            <span class="inline-flex items-center gap-1 text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-500 border-rose-500/20">
-              ▲ 26,000원 (1.41%)
+            <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-400 border-rose-500/20">
+              ▲ 25,000 (1.36%)
             </span>
           </div>
           
-          <div class="mb-6">
+          <div class="mb-5">
             <div class="text-xs text-slate-400 font-medium">현재가</div>
-            <div class="text-4xl font-extrabold text-white tracking-tight">1,866,000 <span class="text-xl font-normal text-slate-400">원</span></div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">1,865,000 <span class="text-lg font-normal text-slate-400">원</span></div>
           </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs bg-slate-900/50 p-4 rounded-xl border border-slate-700/40">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
             <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">1,891,000</span></div>
-            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-rose-400">1,910,000</span></div>
-            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-sky-400">1,836,000</span></div>
-            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">4,254,892주</span></div>
+            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">1,910,000</span></div>
+            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">1,836,000</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">4,259,158</span></div>
           </div>
         </div>
         
+      </div>
     </section>
 
-    <!-- Content Sections (News & Comparison) -->
+    <!-- SECTION 2: US MARKET -->
+    <section class="mb-12">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <span>🇺🇸</span> 미국 빅테크 (엔비디아 · 애플 · MS)
+        </h2>
+        <span class="text-xs text-indigo-400 bg-indigo-500/10 px-2 py-0.5 rounded border border-indigo-500/20">팀원 협업 연동 영역</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-500 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">NVDA</span>
+              <h3 class="text-xl font-bold text-white inline">엔비디아</h3>
+            </div>
+            <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
+              ▲ $1.49 (+0.66%)
+            </span>
+          </div>
+          
+          <div class="mb-5">
+            <div class="text-xs text-slate-400 font-medium">현재가</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">$228.87 <span class="text-lg font-normal text-slate-400"></span></div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
+            <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">$0.00</span></div>
+            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">$229.98</span></div>
+            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">$226.50</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">93,296,546</span></div>
+          </div>
+        </div>
+        
+
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-500 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">AAPL</span>
+              <h3 class="text-xl font-bold text-white inline">애플</h3>
+            </div>
+            <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-emerald-500/10 text-emerald-400 border-emerald-500/20">
+              ▲ $0.77 (+0.23%)
+            </span>
+          </div>
+          
+          <div class="mb-5">
+            <div class="text-xs text-slate-400 font-medium">현재가</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">$339.75 <span class="text-lg font-normal text-slate-400"></span></div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
+            <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">$0.00</span></div>
+            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">$345.34</span></div>
+            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">$338.75</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">40,599,377</span></div>
+          </div>
+        </div>
+        
+
+        <div class="bg-slate-800/80 border border-slate-700/60 rounded-2xl p-6 shadow-xl backdrop-blur-sm hover:border-slate-500 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <span class="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-700 text-slate-300 mr-2">MSFT</span>
+              <h3 class="text-xl font-bold text-white inline">마이크로소프트</h3>
+            </div>
+            <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-400 border-rose-500/20">
+              ▼ $3.61 (-0.72%)
+            </span>
+          </div>
+          
+          <div class="mb-5">
+            <div class="text-xs text-slate-400 font-medium">현재가</div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">$498.00 <span class="text-lg font-normal text-slate-400"></span></div>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
+            <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">$0.00</span></div>
+            <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">$508.50</span></div>
+            <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">$493.65</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">20,867,650</span></div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- SECTION 3: NEWS & REPORT -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-      <!-- News Column (2 cols) -->
-      <section class="lg:col-span-2">
-        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
-          <span>📰</span> 실시간 주요 뉴스
+      <div class="lg:col-span-2">
+        <h3 class="text-xl font-bold text-white mb-5 flex items-center gap-2">
+          <span>📰</span> 주요 뉴스 피드
         </h3>
         
-        <div class="mb-8">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
-            <h4 class="text-lg font-bold text-white">삼성전자 최신 뉴스</h4>
-          </div>
-          <div class="space-y-3">
+        <div class="mb-6">
+          <h4 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> 삼성전자 뉴스
+          </h4>
+          <div class="space-y-2.5">
             
-            <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1iLURKZ0JFTEwzZmQxZW5yXzNWb0pUYmRUdHlBclNiZVBybEpmWUFsWXFCNjNHTWdKWHVzZ2RyaDI3Vm9DTUkzOTJpT0lPNFdiY2tvS0lIaUhkeHc?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
+            <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE5lbUpFWkQxaUdJbHVaVVJuSl9YTVp4YVl2TVR1QkhZY3FLVlJMZndVZmpHcm1PQTdVLTBjZy1fM0VxdTdyRGZtWDdsOGxkZWhfUnc?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
               <div class="flex items-start justify-between gap-3">
-                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">“1000주면 460만 원?”…삼성전자 배당, 28일까지 사야 받는다 [잇슈 머니]</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">KBS 뉴스</span>
+                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">“삼성전자 목표주가 63만원”…30만선 회복 앞두고 증권가 전망 보니</div>
+                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">매일경제</span>
               </div>
             </a>
             
@@ -127,36 +217,21 @@
               </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFAzM2MwbzR4cU1HcmV4QjVxQjdoMHpISklQUFFreWM4XzVzdWMzS3VGcVlJX3VudEtlVGdaa254T2xLSVVpZ0dXTEJCeUZOeXB6WFpxYWFR?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
+            <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTE1iLURKZ0JFTEwzZmQxZW5yXzNWb0pUYmRUdHlBclNiZVBybEpmWUFsWXFCNjNHTWdKWHVzZ2RyaDI3Vm9DTUkzOTJpT0lPNFdiY2tvS0lIaUhkeHc?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
               <div class="flex items-start justify-between gap-3">
-                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">“삼성전자 주식, 1년 안에 이 정도 가격까지 폭등한다”</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">위키트리</span>
-              </div>
-            </a>
-            
-            <a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTE5kbVk0X0xwalMyTjZRWlhQNWZOZUV0eDF2eU5SMXg2aUMybkNBMlk0RUFESHhQNEQ1OWt4WnpZak1XSWdoay1oZTRvY2VYaVI4Mnc?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
-              <div class="flex items-start justify-between gap-3">
-                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">코스피, 반도체 훈풍에 7000포인트 안착…삼성전자 3%대 강세</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">매일경제 마켓</span>
+                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">“1000주면 460만 원?”…삼성전자 배당, 28일까지 사야 받는다 [잇슈 머니]</div>
+                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">KBS 뉴스</span>
               </div>
             </a>
             
           </div>
         </div>
         
-        <div class="mb-8">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-2.5 h-2.5 rounded-full bg-indigo-500"></div>
-            <h4 class="text-lg font-bold text-white">SK하이닉스 최신 뉴스</h4>
-          </div>
-          <div class="space-y-3">
-            
-            <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE1tanVmMWxzWkg0dnluTW9hVkhrQWpNcjl0M1VmbS1EME5pYVhOcE5ib2dMb1gtajB5dy1JZjJ6VE00ZVVrZ3JRQTFqbmRDeVJmNXpwWlpvTGNmQjgyc0s1eXdCQnQ1YnNUamlUSXBYZEE?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
-              <div class="flex items-start justify-between gap-3">
-                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">SK하이닉스 ADR, 美 반도체지수 조기편입…개미 '최애' SOXL에도 담겼다</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">연합인포맥스</span>
-              </div>
-            </a>
+        <div class="mb-6">
+          <h4 class="text-base font-bold text-white mb-3 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-indigo-500"></span> SK하이닉스 뉴스
+          </h4>
+          <div class="space-y-2.5">
             
             <a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1ubW5mdnNpUHdtYkctQV8yWnFPQ0Y4bE1ESmJiOE55TlFVLVZGWHZtS1VVT3Z6SzV2cUNYU205ay11ZWItczhqNmwwUl9XZTl0VEVnOU9UX2pQR19wemx3d2ppT2VOcjZl0gFuQVVfeXFMUEc2YUhkMUtXNGJVNkgwRTFCUzEyb2g3OHd6MWt5LUVqRXZLZGVWU2xIcE40ZDhmUlkxYzFIYWwzLXBXckNScEd5Q0ZiM2c2d0NuMkRjUmMxQnBTQTNTemVUeGhUTldBMlFKNVBYaUE?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
               <div class="flex items-start justify-between gap-3">
@@ -165,10 +240,10 @@
               </div>
             </a>
             
-            <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5LNUZxNkFTZ2k2Z0d1QkJCdFVkSGx1dW9UcVR0bG9DbDN1OS0tTHhrcG5kN0dwVXNmdm8tS3NCV3pBcG5wVHZMTjRuaE1ZVzNKWVVOZFdPUlVMUQ?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
+            <a href="https://news.google.com/rss/articles/CBMid0FVX3lxTE90XzBTZUt1cnJWNVVXM2RrQ3UwRlJ3bklwZVdNR3FDTjhmX0NYRGptdEZ2cUVJRkY1cWJNeGtYM0NLc0pUT0tlWl9vaktpUFd5RzBxZFlfSXh6RHBmQmh0VFVoQ0RCMnVZcWNUeDdQdF9aZ1F1NG9V?oc=5" target="_blank" rel="noopener noreferrer" class="group block p-4 rounded-xl bg-slate-800/50 border border-slate-700/40 hover:bg-slate-700/50 hover:border-indigo-500/50 transition-all">
               <div class="flex items-start justify-between gap-3">
-                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">"메타가 불 지폈다"…삼성전자·SK하이닉스 다시 '들썩'</div>
-                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">한국경제</span>
+                <div class="text-sm font-medium text-slate-200 group-hover:text-indigo-400 leading-snug line-clamp-2">SK하이닉스 주가, 오늘 급등하는 이유는?</div>
+                <span class="shrink-0 text-xs px-2 py-0.5 rounded bg-slate-900/80 text-slate-400 border border-slate-700/40 font-mono">Investing.com 한국어</span>
               </div>
             </a>
             
@@ -182,39 +257,27 @@
           </div>
         </div>
         
-      </section>
+      </div>
 
-      <!-- Side Column: US Market Comparison Highlight -->
-      <section class="lg:col-span-1">
+      <!-- Side Report Info -->
+      <div class="lg:col-span-1">
         <div class="sticky top-6 bg-gradient-to-br from-slate-900 to-indigo-950/40 border border-indigo-500/20 rounded-2xl p-6 shadow-xl">
-          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">💡 심층 분석 요약</span>
-          <h3 class="text-lg font-bold text-white mb-3">미국장이 더 좋은가?</h3>
+          <span class="text-xs font-bold uppercase tracking-wider text-indigo-400 block mb-2">💡 협업 및 비교 보고서</span>
+          <h3 class="text-lg font-bold text-white mb-2">미국장이 왜 좋은가?</h3>
           <p class="text-xs text-slate-300 leading-relaxed mb-4">
-            엔지니어링(API 무료 생태계)과 펀더멘털(자사주 소각·주주환원, AI 칩 독점력, 달러 환율 방어) 측면에서 <strong>미국장이 확실히 우위</strong>에 있습니다.
+            미국 빅테크는 자사주 소각과 AI 생태계 장악으로 장기 우상향 체력을 가집니다. 다른 팀원은 <code>TARGET_US_STOCKS</code>에 티커를 추가하여 즉시 확장할 수 있습니다.
           </p>
-          <ul class="text-xs text-slate-400 space-y-2 mb-6">
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">✓</span> <span><strong>자본 환원:</strong> 美 빅테크는 이익 증가 시 자사주 소각으로 주가 부양</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">✓</span> <span><strong>플랫폼 권력:</strong> 엔비디아(마진 70%) vs 메모리 공급사</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-emerald-400">✓</span> <span><strong>달러 자산:</strong> 경제 위기 시 환차익 헷지 기능</span>
-            </li>
-          </ul>
           <a href="https://github.com/hanjisubusiness22222/project3/blob/main/market_review_and_feasibility.md" target="_blank" class="block w-full text-center py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-medium text-xs border border-slate-700/80 transition-all">
-            전체 비교 보고서 읽기 📄
+            국장 vs 미장 검토 보고서 보기 📄
           </a>
         </div>
-      </section>
+      </div>
     </div>
 
     <!-- Footer -->
     <footer class="mt-16 pt-8 border-t border-slate-900 text-center text-xs text-slate-500">
-      <p>Powered by GitHub Actions & Pages · 매일 장 마감 후 자동 갱신됩니다.</p>
+      <p>Powered by GitHub Actions · 팀 협업 주식 프로젝트</p>
     </footer>
   </div>
-
 </body>
 </html>
