@@ -1,7 +1,8 @@
 # 📈 삼성전자 & SK하이닉스 주식·뉴스 일일 브리핑 봇
 
 > **GitHub Actions**를 활용하여 매일 장 마감 후 삼성전자와 SK하이닉스의 시세 및 최신 주요 뉴스를 수집하여 브리핑 리포트를 자동 발행합니다.  
-> 💡 별도의 서버나 유료 API 없이 **100% 무료**로 30분 이내에 누구나 구축할 수 있습니다.
+> 💡 별도의 서버나 유료 API 없이 **100% 무료**로 30분 이내에 누구나 구축할 수 있습니다.  
+> 🌐 **실시간 웹 대시보드 홈페이지**: [https://hanjisubusiness22222.github.io/project3/](https://hanjisubusiness22222.github.io/project3/)
 
 ---
 
@@ -9,13 +10,13 @@
 <!-- STOCK_REPORT_START -->
 
 ## 📊 [브리핑] 국장 반도체(삼성전자·SK하이닉스) 시세 및 뉴스
-> 기준 일시: **2026-09-23 16:43:03 KST**  *(GitHub Actions 자동 생성)*
+> 기준 일시: **2026-09-23 16:46:51 KST**  *(GitHub Actions 자동 생성)*
 
 ### 📈 주가 요약
 | 종목명 | 종목코드 | 현재가 (원) | 전일대비 | 등락률 | 시가 | 고가 | 저가 | 거래량(주) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| **삼성전자** | `005930` | **285,500** | 🔴 ▲ 9,000 | 3.25% | 282,500 | 285,500 | 280,750 | 28,011,541 |
-| **SK하이닉스** | `000660` | **1,866,000** | 🔴 ▲ 26,000 | 1.41% | 1,891,000 | 1,910,000 | 1,836,000 | 4,245,481 |
+| **삼성전자** | `005930` | **285,500** | 🔴 ▲ 9,000 | 3.25% | 282,500 | 285,500 | 280,750 | 28,031,474 |
+| **SK하이닉스** | `000660` | **1,866,000** | 🔴 ▲ 26,000 | 1.41% | 1,891,000 | 1,910,000 | 1,836,000 | 4,254,892 |
 
 ### 📰 최신 주요 뉴스
 #### 🔹 삼성전자 (`005930`)
@@ -28,7 +29,7 @@
 - [SK하이닉스 ADR, 美 반도체지수 조기편입…개미 '최애' SOXL에도 담겼다](https://news.google.com/rss/articles/CBMicEFVX3lxTE1tanVmMWxzWkg0dnluTW9hVkhrQWpNcjl0M1VmbS1EME5pYVhOcE5ib2dMb1gtajB5dy1JZjJ6VE00ZVVrZ3JRQTFqbmRDeVJmNXpwWlpvTGNmQjgyc0s1eXdCQnQ1YnNUamlUSXBYZEE?oc=5) `[연합인포맥스]`
 - [삼성전자·SK하이닉스, 반도체 수요 증가 기대감에 동반 상승 - 머니투데이](https://news.google.com/rss/articles/CBMiaEFVX3lxTE1ubW5mdnNpUHdtYkctQV8yWnFPQ0Y4bE1ESmJiOE55TlFVLVZGWHZtS1VVT3Z6SzV2cUNYU205ay11ZWItczhqNmwwUl9XZTl0VEVnOU9UX2pQR19wemx3d2ppT2VOcjZl0gFuQVVfeXFMUEc2YUhkMUtXNGJVNkgwRTFCUzEyb2g3OHd6MWt5LUVqRXZLZGVWU2xIcE40ZDhmUlkxYzFIYWwzLXBXckNScEd5Q0ZiM2c2d0NuMkRjUmMxQnBTQTNTemVUeGhUTldBMlFKNVBYaUE?oc=5) `[머니투데이]`
 - ["메타가 불 지폈다"…삼성전자·SK하이닉스 다시 '들썩'](https://news.google.com/rss/articles/CBMiWkFVX3lxTE5LNUZxNkFTZ2k2Z0d1QkJCdFVkSGx1dW9UcVR0bG9DbDN1OS0tTHhrcG5kN0dwVXNmdm8tS3NCV3pBcG5wVHZMTjRuaE1ZVzNKWVVOZFdPUlVMUQ?oc=5) `[한국경제]`
-- [삼성전자, 연휴 앞두고 3%대 급등마감…SK하이닉스도 1.2%↑(종합)](https://news.google.com/rss/articles/CBMiT0FVX3lxTFB6TENHZGtlQlFUOXNjZk8taERwSUZrVkhURFlqOEpvQm1oYkx2MGlTd0ozUnJoT2h6ZG82eUJ2NGpfUUVPeU83ZHItRTdPanM?oc=5) `[v.daum.net]`
+- [[특징주] 삼성전자·SK하이닉스, 메모리 반도체 수요 증가.. '강세"](https://news.google.com/rss/articles/CBMiiAFBVV95cUxPNjdieWtyTmduS3IzZTFKako4U3NyT2pUNU5lYVZmMVJNWHJVUndPWFZ1TlpnQzRKRVZzWVpwT283SG85OVZCdzhnZkRuTHVySlZtOVotV0xHMUxDQ1dXRERXWXp4WnR1aTBOQk5DTWlwRVZmSkg5cUw5dzgwcnRGaVBpYjhQSEpw?oc=5) `[글로벌이코노믹]`
 
 
 <!-- STOCK_REPORT_END -->
