@@ -1,0 +1,42 @@
+name: Stock Daily Briefing (Samsung & SK Hynix)
+
+on:
+  schedule:
+    # 월~금 한국 시간 16:00 (UTC 07:00) 정기 실행
+    - cron: '0 7 * * 1-5'
+  workflow_dispatch: # GitHub 웹 콘솔에서 'Run workflow' 버튼으로 수동 즉시 실행
+
+permissions:
+  contents: write # 리포트 파일 및 README.md를 레포지토리에 자동 커밋하기 위한 권한
+
+jobs:
+  run-stock-briefing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v4
+
+      - name: Python 환경 설정
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 의존성 패키지 설치
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 주식 시세 및 뉴스 수집 & 리포트 생성
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          python main.py
+
+      - name: 생성된 리포트 Git 자동 커밋 및 푸시
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action Bot"
+          git add reports/ README.md
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(report): 주식 브리핑 자동 업데이트 [skip ci]" && git push)
