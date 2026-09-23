@@ -4,6 +4,8 @@ on:
   schedule:
     # 월~금 한국 시간 16:00 (UTC 07:00) 정기 실행
     - cron: '0 7 * * 1-5'
+  push:
+    branches: [ main ]
   workflow_dispatch: # GitHub 웹 콘솔에서 'Run workflow' 버튼으로 수동 즉시 실행
 
 permissions:
