@@ -33,13 +33,35 @@
 
       <div class="mt-4 sm:mt-0 flex flex-wrap items-center gap-3 justify-center sm:justify-end">
         <div class="text-xs text-slate-400 font-mono bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
-          갱신: 2026-09-23 16:54:41 KST
+          갱신: 2026-09-23 16:58:30 KST
         </div>
+        <button onclick="openDiscordModal()" class="text-xs font-semibold px-3.5 py-1.5 rounded-lg bg-[#5865F2] hover:bg-[#4752C4] text-white transition-all shadow-lg shadow-[#5865F2]/25 flex items-center gap-1.5 cursor-pointer">
+          <span>🔔</span> 디스코드로 받아보기
+        </button>
         <a href="https://github.com/hanjisubusiness22222/project3" target="_blank" class="text-xs font-semibold px-4 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg shadow-indigo-600/20">
           GitHub 레포 ↗
         </a>
       </div>
     </header>
+
+    <!-- Discord Real-time Alert Banner -->
+    <div class="mb-10 p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-[#5865F2]/20 via-indigo-950/40 to-slate-900 border border-[#5865F2]/30 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-xl">
+      <div class="flex items-center gap-3 text-center sm:text-left">
+        <div class="w-11 h-11 rounded-xl bg-[#5865F2] flex items-center justify-center text-2xl shadow-lg shadow-[#5865F2]/30 shrink-0">
+          💬
+        </div>
+        <div>
+          <div class="text-sm sm:text-base font-bold text-white flex items-center gap-2 justify-center sm:justify-start">
+            디스코드로 실시간 주식 알림 받아보기
+            <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">연동 준비 완료</span>
+          </div>
+          <p class="text-xs text-slate-300 mt-0.5">매일 16:00 KST에 삼성전자·SK하이닉스 시세 및 미국 빅테크 브리핑이 채널로 도착합니다.</p>
+        </div>
+      </div>
+      <button onclick="openDiscordModal()" class="shrink-0 text-xs font-bold px-4 py-2.5 rounded-xl bg-[#5865F2] hover:bg-[#4752C4] text-white transition-all shadow-lg shadow-[#5865F2]/30 flex items-center gap-1.5 cursor-pointer">
+        <span>🔔</span> 연동 방법 확인
+      </button>
+    </div>
 
     <!-- SECTION 1: KR MARKET -->
     <section class="mb-10">
@@ -58,20 +80,20 @@
               <h3 class="text-xl font-bold text-white inline">삼성전자</h3>
             </div>
             <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-400 border-rose-500/20">
-              ▲ 8,500 (3.07%)
+              ▲ 9,000 (3.25%)
             </span>
           </div>
           
           <div class="mb-5">
             <div class="text-xs text-slate-400 font-medium">현재가</div>
-            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">285,000 <span class="text-lg font-normal text-slate-400">원</span></div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">285,500 <span class="text-lg font-normal text-slate-400">원</span></div>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
             <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">282,500</span></div>
             <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">285,500</span></div>
             <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">280,750</span></div>
-            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">28,076,301</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">28,107,273</span></div>
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between text-xs">
@@ -90,20 +112,20 @@
               <h3 class="text-xl font-bold text-white inline">SK하이닉스</h3>
             </div>
             <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold px-3 py-1 rounded-full border bg-rose-500/10 text-rose-400 border-rose-500/20">
-              ▲ 23,000 (1.25%)
+              ▲ 24,000 (1.30%)
             </span>
           </div>
           
           <div class="mb-5">
             <div class="text-xs text-slate-400 font-medium">현재가</div>
-            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">1,863,000 <span class="text-lg font-normal text-slate-400">원</span></div>
+            <div class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">1,864,000 <span class="text-lg font-normal text-slate-400">원</span></div>
           </div>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs bg-slate-900/60 p-3 rounded-xl border border-slate-700/40">
             <div><span class="text-slate-500 block">시가</span><span class="font-medium text-slate-200">1,891,000</span></div>
             <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">1,910,000</span></div>
             <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">1,836,000</span></div>
-            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">4,263,231</span></div>
+            <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">4,266,247</span></div>
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between text-xs">
@@ -314,5 +336,57 @@
       <p>Powered by GitHub Actions · 팀 협업 주식 프로젝트</p>
     </footer>
   </div>
+
+  <!-- Discord Info Modal -->
+  <div id="discordModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700/80 rounded-2xl max-w-md w-full p-6 shadow-2xl relative animate-in fade-in zoom-in duration-200">
+      <button onclick="closeDiscordModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">✕</button>
+      
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-12 h-12 rounded-2xl bg-[#5865F2] flex items-center justify-center text-2xl shadow-lg shadow-[#5865F2]/30">
+          💬
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">디스코드 실시간 브리핑</h3>
+          <p class="text-xs text-indigo-400">장 마감 후 16:00 KST 자동 발송</p>
+        </div>
+      </div>
+
+      <div class="text-xs text-slate-300 space-y-3 mb-6 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+        <p class="leading-relaxed">
+          현재 시스템 백엔드에는 <strong>디스코드 Rich Embed 알림 엔진(스켈레톤)</strong>이 완벽히 구축되어 있습니다.
+        </p>
+        <div class="pt-2 border-t border-slate-800 space-y-2">
+          <div class="font-bold text-white">📌 디스코드 연동 3단계:</div>
+          <ol class="list-decimal list-inside space-y-1 text-slate-400">
+            <li>디스코드 채널 설정 ➡️ 연동 ➡️ <strong class="text-slate-200">웹후크 만들기</strong></li>
+            <li>생성된 웹후크 URL 복사</li>
+            <li>GitHub 저장소 Settings ➡️ Secrets에 <code class="text-indigo-300">DISCORD_WEBHOOK_URL</code> 등록</li>
+          </ol>
+        </div>
+        <p class="text-[11px] text-slate-400 italic">
+          * 지금 디스코드가 없더라도 시스템은 에러 없이 안전하게 동작하며, 나중에 URL만 등록하시면 즉시 알림이 활성화됩니다.
+        </p>
+      </div>
+
+      <div class="flex gap-2">
+        <a href="https://github.com/hanjisubusiness22222/project3#readme" target="_blank" class="flex-1 text-center py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold border border-slate-700 transition-all">
+          연동 가이드 문서
+        </a>
+        <button onclick="closeDiscordModal()" class="flex-1 py-2.5 px-3 rounded-xl bg-[#5865F2] hover:bg-[#4752C4] text-white text-xs font-semibold transition-all">
+          닫기
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openDiscordModal() {
+      document.getElementById('discordModal').classList.remove('hidden');
+    }
+    function closeDiscordModal() {
+      document.getElementById('discordModal').classList.add('hidden');
+    }
+  </script>
 </body>
 </html>
