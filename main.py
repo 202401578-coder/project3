@@ -72,6 +72,7 @@ def get_kr_stock_quote(code: str) -> dict:
             "high_price": total_infos.get("highPrice", "-"),
             "low_price": total_infos.get("lowPrice", "-"),
             "volume": total_infos.get("accumulatedTradingVolume", "-"),
+            "verify_url": f"https://finance.naver.com/item/main.naver?code={code}",
         }
     except Exception as e:
         print(f"[{code}] 국장 주가 정보 조회 실패: {e}")
@@ -111,6 +112,7 @@ def get_us_stock_quote(ticker: str, name: str) -> dict:
             "high_price": f"{meta.get('regularMarketDayHigh', 0):,.2f}",
             "low_price": f"{meta.get('regularMarketDayLow', 0):,.2f}",
             "volume": f"{meta.get('regularMarketVolume', 0):,}",
+            "verify_url": f"https://finance.yahoo.com/quote/{ticker}",
         }
     except Exception as e:
         print(f"[{ticker}] 미장 주가 조회 실패: {e}")
@@ -161,23 +163,25 @@ def build_markdown_report(kr_stocks: list, us_stocks: list, date_str: str) -> st
 
     # 1. 국장 요약
     md.append("### 🇰🇷 국내 주식 (국장: 삼성전자 & SK하이닉스)")
-    md.append("| 종목명 | 코드 | 현재가 (원) | 전일대비 | 등락률 | 시가 | 고가 | 저가 | 거래량 |")
-    md.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+    md.append("> *💡 종목명 또는 [확인] 링크를 클릭하면 네이버 증권 공식 시세 페이지에서 실시간 가격을 바로 대조 검증할 수 있습니다.*")
+    md.append("| 종목명 | 코드 | 현재가 (원) | 전일대비 | 등락률 | 시가 | 고가 | 저가 | 거래량 | 실제시세 검증링크 |")
+    md.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
     for s in kr_stocks:
         q = s["quote"]
         sign_color = "🔴" if q["sign"] == "▲" else ("🔵" if q["sign"] == "▼" else "⚪")
-        md.append(f"| **{q['name']}** | `{q['symbol']}` | **{q['close_price']}** | {sign_color} {q['sign']} {q['diff_price']} | {q['diff_ratio']}% | {q['open_price']} | {q['high_price']} | {q['low_price']} | {q['volume']} |")
+        md.append(f"| [**{q['name']}**]({q['verify_url']}) | `{q['symbol']}` | **{q['close_price']}** | {sign_color} {q['sign']} {q['diff_price']} | {q['diff_ratio']}% | {q['open_price']} | {q['high_price']} | {q['low_price']} | {q['volume']} | [네이버증권 바로가기 ↗]({q['verify_url']}) |")
     md.append("")
 
     # 2. 미장 요약 (팀원 확장 영역)
     if us_stocks:
         md.append("### 🇺🇸 미국 주식 (미장 빅테크)")
-        md.append("| 종목명 | 티커 | 현재가 ($) | 전일대비 | 등락률 | 고가 | 저가 | 거래량 |")
-        md.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
+        md.append("> *💡 종목명 또는 [확인] 링크를 클릭하면 Yahoo Finance 공식 시세 페이지로 연결됩니다.*")
+        md.append("| 종목명 | 티커 | 현재가 ($) | 전일대비 | 등락률 | 고가 | 저가 | 거래량 | 실제시세 검증링크 |")
+        md.append("| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |")
         for s in us_stocks:
             q = s["quote"]
             sign_color = "🟢" if q["sign"] == "▲" else ("🔴" if q["sign"] == "▼" else "⚪")
-            md.append(f"| **{q['name']}** | `{q['symbol']}` | **${q['close_price']}** | {sign_color} {q['sign']} ${q['diff_price']} | {q['diff_ratio']}% | ${q['high_price']} | ${q['low_price']} | {q['volume']} |")
+            md.append(f"| [**{q['name']}**]({q['verify_url']}) | `{q['symbol']}` | **${q['close_price']}** | {sign_color} {q['sign']} ${q['diff_price']} | {q['diff_ratio']}% | ${q['high_price']} | ${q['low_price']} | {q['volume']} | [Yahoo Finance 바로가기 ↗]({q['verify_url']}) |")
         md.append("")
 
     # 3. 최신 뉴스 요약
@@ -255,6 +259,13 @@ def generate_html_dashboard(kr_stocks: list, us_stocks: list, date_str: str):
             <div><span class="text-slate-500 block">고가</span><span class="font-medium text-emerald-400">{prefix}{q["high_price"]}</span></div>
             <div><span class="text-slate-500 block">저가</span><span class="font-medium text-rose-400">{prefix}{q["low_price"]}</span></div>
             <div><span class="text-slate-500 block">거래량</span><span class="font-medium text-slate-200">{q["volume"]}</span></div>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-slate-700/50 flex items-center justify-between text-xs">
+            <span class="text-slate-400">데이터 검증:</span>
+            <a href="{q['verify_url']}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-indigo-400 hover:text-indigo-300 font-bold hover:underline transition-all">
+              {'네이버 증권 실제 시세 확인 ↗' if is_kr else 'Yahoo Finance 실제 시세 확인 ↗'}
+            </a>
           </div>
         </div>
         """
