@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-26T10:36:00+09:00",
+  "generated_at": "2026-09-26T16:45:10+09:00",
   "sources": [
     {
       "ticker": "GOOGL",
@@ -7,8 +7,8 @@
       "source": "Google 공식 블로그",
       "url": "https://blog.google/rss/",
       "accent": "#4285f4",
-      "status": "ok",
-      "count": "8"
+      "status": "error",
+      "count": "0"
     },
     {
       "ticker": "NVDA",
@@ -20,80 +20,13 @@
       "count": "8"
     }
   ],
-  "errors": [],
+  "errors": [
+    {
+      "ticker": "GOOGL",
+      "message": "The read operation timed out"
+    }
+  ],
   "items": [
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "5 ways to upgrade your study habits with Chrome",
-      "url": "https://blog.google/products-and-platforms/products/chrome/tips-for-school-and-studying/",
-      "published_iso": "2026-09-24T17:00:00+00:00",
-      "published_kst": "2026.09.25 02:00"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "5 Google Photos updates to make the most of summer memories.",
-      "url": "https://blog.google/products-and-platforms/products/photos/google-photos-updates/",
-      "published_iso": "2026-09-24T17:00:00+00:00",
-      "published_kst": "2026.09.25 02:00"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "Our new health and safety tools are live in the Google Health app.",
-      "url": "https://blog.google/products-and-platforms/products/google-health/health-guardian-features-live/",
-      "published_iso": "2026-09-24T17:00:00+00:00",
-      "published_kst": "2026.09.25 02:00"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "Turn discovery into action with September’s Demand Gen Drop.",
-      "url": "https://blog.google/products/ads-commerce/demand-gen-drop-september-2026/",
-      "published_iso": "2026-09-24T16:00:00+00:00",
-      "published_kst": "2026.09.25 01:00"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "Introducing Gemini 3.8 Live with Live Avatar",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/",
-      "published_iso": "2026-09-24T15:30:00+00:00",
-      "published_kst": "2026.09.25 00:30"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "Behind Project Suncatcher, our moonshot to put AI in space",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-project-suncatcher-facts/",
-      "published_iso": "2026-09-24T13:00:00+00:00",
-      "published_kst": "2026.09.24 22:00"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "Helping 25,000 veterans and military families build careers in skilled trades",
-      "url": "https://blog.google/company-news/outreach-and-initiatives/creating-opportunity/veterans-skilled-trades/",
-      "published_iso": "2026-09-24T12:00:00+00:00",
-      "published_kst": "2026.09.24 21:00"
-    },
-    {
-      "ticker": "GOOGL",
-      "company": "Alphabet / Google",
-      "source": "Google 공식 블로그",
-      "title": "Turning cultural artifacts into interactive learning companions",
-      "url": "https://blog.google/company-news/outreach-and-initiatives/arts-culture/the-talking-museum-museum-memory/",
-      "published_iso": "2026-09-24T10:00:00+00:00",
-      "published_kst": "2026.09.24 19:00"
-    },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
