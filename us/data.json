@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-05T16:05:26+09:00",
+  "generated_at": "2026-11-05T02:21:35+09:00",
   "sources": [
     {
       "ticker": "GOOGL",
@@ -26,145 +26,145 @@
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "Making AI training available to UK and Ireland educators",
-      "url": "https://blog.google/products-and-platforms/products/education/making-ai-training-available-to-uk-and-ireland-educators/",
-      "published_iso": "2026-10-05T07:00:00+00:00",
-      "published_kst": "2026.10.05 16:00"
+      "title": "We're sharing our framework for building safer and more helpful AI for health.",
+      "url": "https://blog.google/innovation-and-ai/technology/health/evaluating-health-ai-at-scale/",
+      "published_iso": "2026-11-04T14:00:00+00:00",
+      "published_kst": "2026.11.04 23:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "The latest AI news we announced in September 2026",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-september-2026/",
-      "published_iso": "2026-10-02T15:00:00+00:00",
-      "published_kst": "2026.10.03 00:00"
+      "title": "Take a closer look at art with the Courtauld",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/arts-culture/the-art-of-looking/",
+      "published_iso": "2026-11-04T10:00:00+00:00",
+      "published_kst": "2026.11.04 19:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "Our Project Suncatcher prototype satellite is in orbit.",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-prototype/",
-      "published_iso": "2026-10-01T23:30:00+00:00",
-      "published_kst": "2026.10.02 08:30"
+      "title": "New research shows how Guided Learning supports students",
+      "url": "https://blog.google/products-and-platforms/products/education/guided-learning-uk-japan/",
+      "published_iso": "2026-11-03T14:00:00+00:00",
+      "published_kst": "2026.11.03 23:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "Turn your existing social assets into high-impact YouTube ads.",
-      "url": "https://blog.google/products/ads-commerce/creating-assets-youtube-ads/",
-      "published_iso": "2026-10-01T20:30:00+00:00",
-      "published_kst": "2026.10.02 05:30"
+      "title": "We’re providing funding for organizations building AI for teachers.",
+      "url": "https://blog.google/products-and-platforms/products/education/google-org-funding-ai-education/",
+      "published_iso": "2026-11-03T14:00:00+00:00",
+      "published_kst": "2026.11.03 23:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "Guided Vision in Gemini Live: built for accessibility",
-      "url": "https://blog.google/innovation-and-ai/products/gemini-app/guided-vision-gemini-live/",
-      "published_iso": "2026-10-01T16:00:00+00:00",
-      "published_kst": "2026.10.02 01:00"
+      "title": "AI in the learning era",
+      "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-2026/",
+      "published_iso": "2026-11-03T14:00:00+00:00",
+      "published_kst": "2026.11.03 23:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "1,400 educators joined our Badge-a-thon: Day of AI Learning.",
-      "url": "https://blog.google/products-and-platforms/products/education/ai-educator-series-badge-a-thon/",
-      "published_iso": "2026-10-01T16:00:00+00:00",
-      "published_kst": "2026.10.02 01:00"
+      "title": "Designing responsible AI for learning",
+      "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/",
+      "published_iso": "2026-11-03T14:00:00+00:00",
+      "published_kst": "2026.11.03 23:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "5 ways Search can help you perfect your at-home coffee routine",
-      "url": "https://blog.google/products-and-platforms/products/search/coffee-tips-google-search/",
-      "published_iso": "2026-10-01T13:00:00+00:00",
-      "published_kst": "2026.10.01 22:00"
+      "title": "Working collaboratively to fight scams in Asia Pacific",
+      "url": "https://blog.google/company-news/inside-google/around-the-globe/google-asia/fight-against-apac-scams/",
+      "published_iso": "2026-11-03T14:00:00+00:00",
+      "published_kst": "2026.11.03 23:00"
     },
     {
       "ticker": "GOOGL",
       "company": "Alphabet / Google",
       "source": "Google 공식 블로그",
-      "title": "Google's AI ranks #1 for predicting flu hospitalizations.",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/google-science-ai-flu-forecasts/",
-      "published_iso": "2026-09-30T21:30:00+00:00",
-      "published_kst": "2026.10.01 06:30"
+      "title": "Expanding AI educator training to new countries",
+      "url": "https://blog.google/products-and-platforms/products/education/google-ai-educator-series-global-expansion-november-2026/",
+      "published_iso": "2026-11-03T14:00:00+00:00",
+      "published_kst": "2026.11.03 23:00"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA Announces a $150 Billion Share Repurchase Authorization Increase",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-a-150-billion-share-repurchase-authorization-increase",
-      "published_iso": "2026-09-28T11:00:00+00:00",
-      "published_kst": "2026.09.28 20:00"
+      "title": "NVIDIA Sets Conference Call for Third-Quarter Financial Results",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-sets-conference-call-for-third-quarter-financial-results-6928873",
+      "published_iso": "2026-10-28T21:00:00+00:00",
+      "published_kst": "2026.10.29 06:00"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA Launches Open Agent Safety Platform to Secure Agents From Testing to Deployment",
-      "url": "https://nvidianews.nvidia.com/news/open-agent-safety-platform",
-      "published_iso": "2026-09-28T09:00:00+00:00",
-      "published_kst": "2026.09.28 18:00"
+      "title": "NVIDIA and Oracle Expand NVIDIA Vera Rubin to Multi-Gigawatt Scale and Bring NVIDIA Vera CPU to Oracle Cloud Infrastructure",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-and-bring-nvidia-vera-cpu-to-oracle-cloud-infrastructure",
+      "published_iso": "2026-10-27T16:00:00+00:00",
+      "published_kst": "2026.10.28 01:00"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA Expands Open Source CUDA-Q Platform for Fault-Tolerant Quantum Computing",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-expands-open-source-cuda-q-platform-for-fault-tolerant-quantum-computing",
-      "published_iso": "2026-09-14T13:00:00+00:00",
-      "published_kst": "2026.09.14 22:00"
+      "title": "NVIDIA and Meta to Expand Collaboration on Muse and Muse Family of Models Amid Robust Growth",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-meta-to-expand-collaboration-on-muse-and-muse-family-of-models-amid-robust-growth",
+      "published_iso": "2026-10-27T05:52:00+00:00",
+      "published_kst": "2026.10.27 14:52"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA and Palantir Bring Sovereign Intelligence to Critical Supply Chains",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-and-palantir-bring-sovereign-intelligence-to-critical-supply-chains",
-      "published_iso": "2026-09-10T09:00:00+00:00",
-      "published_kst": "2026.09.10 18:00"
+      "title": "NVIDIA and Supply Chain Partners Expand Capacity to Accelerate AI Infrastructure Buildout",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-and-supply-chain-partners-expand-capacity-to-accelerate-ai-infrastructure-buildout",
+      "published_iso": "2026-10-21T10:33:00+00:00",
+      "published_kst": "2026.10.21 19:33"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA Expands AI Infrastructure Capacity in Partnership With Australia’s Data Center Ecosystem",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-expands-ai-infrastructure-capacity-in-partnership-with-australias-data-center-ecosystem",
-      "published_iso": "2026-09-10T00:00:00+00:00",
-      "published_kst": "2026.09.10 09:00"
+      "title": "NVIDIA Advances Isaac Platform for General-Purpose Robotics With New Reference Humanoid, Frameworks, Simulation Pipelines and Data",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-advances-isaac-platform-for-general-purpose-robotics-with-new-reference-humanoid-frameworks-simulation-pipelines-and-data",
+      "published_iso": "2026-10-21T10:20:00+00:00",
+      "published_kst": "2026.10.21 19:20"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA and MediaTek Deepen Long-Standing Partnership to Build AI Edge to Cloud Computing Platforms",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-and-mediatek-deepen-long-standing-partnership-to-build-ai-edge-to-cloud-computing-platforms",
-      "published_iso": "2026-08-31T12:30:00+00:00",
-      "published_kst": "2026.08.31 21:30"
+      "title": "European Mobility Leaders Build Safe Vehicles and Robotaxi Fleets on NVIDIA Hyperion",
+      "url": "https://nvidianews.nvidia.com/news/european-mobility-leaders-build-safe-vehicles-and-robotaxi-fleets-on-nvidia-hyperion",
+      "published_iso": "2026-10-21T10:14:00+00:00",
+      "published_kst": "2026.10.21 19:14"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "NVIDIA Announces Upcoming Event for Financial Community",
-      "url": "https://nvidianews.nvidia.com/news/nvidia-announces-upcoming-event-for-financial-community-6927858",
-      "published_iso": "2026-08-27T21:00:00+00:00",
-      "published_kst": "2026.08.28 06:00"
+      "title": "Healthcare and Life Sciences Leaders Build on NVIDIA to Advance Drug Discovery and Expand Patient Care",
+      "url": "https://nvidianews.nvidia.com/news/healthcare-and-life-sciences-leaders-build-on-nvidia-to-advance-drug-discovery-and-expand-patient-care",
+      "published_iso": "2026-10-21T10:13:00+00:00",
+      "published_kst": "2026.10.21 19:13"
     },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
       "source": "NVIDIA Newsroom 보도자료",
-      "title": "AWS and NVIDIA to Deliver 2 Million Additional GPUs and Next-Generation Infrastructure for Agentic and Physical AI",
-      "url": "https://nvidianews.nvidia.com/news/aws-and-nvidia-to-deliver-2-million-additional-gpus-and-next-generation-infrastructure-for-agentic-and-physical-ai",
-      "published_iso": "2026-08-26T21:05:00+00:00",
-      "published_kst": "2026.08.27 06:05"
+      "title": "NVIDIA, Nokia and Leading Telecom Operators Turn Networks Into Distributed Intelligence Platforms",
+      "url": "https://nvidianews.nvidia.com/news/nvidia-nokia-and-leading-telecom-operators-turn-networks-into-distributed-intelligence-platforms",
+      "published_iso": "2026-10-21T10:11:00+00:00",
+      "published_kst": "2026.10.21 19:11"
     }
   ]
 }
