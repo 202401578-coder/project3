@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T11:41:44+09:00",
+  "generated_at": "2026-11-15T19:58:00+09:00",
   "sources": [
     {
       "ticker": "GOOGL",
@@ -7,8 +7,8 @@
       "source": "Google 공식 블로그",
       "url": "https://blog.google/rss/",
       "accent": "#4285f4",
-      "status": "error",
-      "count": "0"
+      "status": "ok",
+      "count": "8"
     },
     {
       "ticker": "NVDA",
@@ -20,13 +20,80 @@
       "count": "8"
     }
   ],
-  "errors": [
+  "errors": [],
+  "items": [
     {
       "ticker": "GOOGL",
-      "message": "The read operation timed out"
-    }
-  ],
-  "items": [
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Claim your Google Cloud Credits in Google AI Studio",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/google-cloud-credits-gdp-ai-studio/",
+      "published_iso": "2026-11-13T20:30:00+00:00",
+      "published_kst": "2026.11.14 05:30"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Connect Google Wallet to Gemini for personal finance insights",
+      "url": "https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/",
+      "published_iso": "2026-11-13T17:00:00+00:00",
+      "published_kst": "2026.11.14 02:00"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "5 new Google Flow Tools designed by visual artists",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/new-google-flow-tools/",
+      "published_iso": "2026-11-12T20:30:00+00:00",
+      "published_kst": "2026.11.13 05:30"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Google Search gets a major upgrade with Gemini 4 Hydrogen",
+      "url": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/",
+      "published_iso": "2026-11-12T18:00:00+00:00",
+      "published_kst": "2026.11.13 03:00"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Gemini 4 Hydrogen: everyday coding and agentic workflows for developers",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/build-with-gemini-4-hydrogen/",
+      "published_iso": "2026-11-12T18:00:00+00:00",
+      "published_kst": "2026.11.13 03:00"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Introducing Gemini 4 Hydrogen",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/",
+      "published_iso": "2026-11-12T18:00:00+00:00",
+      "published_kst": "2026.11.13 03:00"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Scientists are using Google AI to help restore giant kelp forests.",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/sustainability/saving-giant-kelp-australia/",
+      "published_iso": "2026-11-12T17:00:00+00:00",
+      "published_kst": "2026.11.13 02:00"
+    },
+    {
+      "ticker": "GOOGL",
+      "company": "Alphabet / Google",
+      "source": "Google 공식 블로그",
+      "title": "Meet the 2026 Google PhD Fellows",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/google-org/phd-fellows-2026/",
+      "published_iso": "2026-11-12T17:00:00+00:00",
+      "published_kst": "2026.11.13 02:00"
+    },
     {
       "ticker": "NVDA",
       "company": "NVIDIA",
